@@ -19,7 +19,6 @@ namespace zetter_printer
             Bitmap bmp = new Bitmap(canvasSizeX * canvasCountX, canvasSizeY * canvasCountY);
 
             Graphics g = Graphics.FromImage(bmp);
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
             g.DrawImage(source, 0, 0, bmp.Width, bmp.Height);
             g.Dispose();

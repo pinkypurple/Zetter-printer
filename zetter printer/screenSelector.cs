@@ -40,6 +40,8 @@ namespace zetter_printer
                 return;
             }
 
+            p.minecraftWnd = hWnd;
+
             Rectangle? layout = getWndRect(new HandleRef(null, hWnd));
 
             if(layout == null)
@@ -61,7 +63,6 @@ namespace zetter_printer
             SetForegroundWindow(hWnd);
             Thread.Sleep(50);
             g.CopyFromScreen(new Point(layout.Value.Left, layout.Value.Top), new Point(0, 0), new Size(layout.Value.Width, layout.Value.Height));
-            g.FillRectangle(new SolidBrush(Color.FromArgb(150, 0, 0, 0)), 0, 0, layout.Value.Width, layout.Value.Height);
             g.Dispose();
 
             

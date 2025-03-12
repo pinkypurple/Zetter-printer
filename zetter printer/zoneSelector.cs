@@ -11,6 +11,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Windows.Graphics.Imaging;
 
 namespace zetter_printer
 {
@@ -18,6 +19,7 @@ namespace zetter_printer
     {
         const string confPath = "screen zone.json";
         public drawConfig dConf = new drawConfig();
+        public Rectangle canvasRegion;
         public Bitmap bg;
 
         mainForm? prnt = null;
@@ -34,6 +36,12 @@ namespace zetter_printer
 
         curSelect cs = curSelect.none;
 
+
+        //      *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+        //
+        //      Very cool init metod indeed (I keep losing it so I added this giant comment, yea)
+        //
+        //      *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *
         public zoneSelector()
         {
             InitializeComponent();
@@ -51,6 +59,11 @@ namespace zetter_printer
             }
 
             paintSpeed.Text = dConf.latency.ToString();
+
+            this.DoubleBuffered = true;
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            this.UpdateStyles();
         }
 
         public void getParent(mainForm p)
@@ -132,11 +145,16 @@ namespace zetter_printer
 
         public void drawDots()
         {
-            g = Graphics.FromHwnd(this.Handle);
+            Bitmap bmp = new Bitmap(this.Width, this.Height);
+            g = Graphics.FromImage(bmp);
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
             if (bg != null)
+            {
                 g.DrawImage(this.bg, 0, 0);
+                g.FillRectangle(new SolidBrush(ColorTheme.TransparentBlack), 0, 0, this.Width, this.Height);
+            }
+
 
             Brush br = new SolidBrush(Color.FromArgb(203, 196, 255));           // Main brush
             Brush brTr = new SolidBrush(Color.FromArgb(40, ColorTheme.Accent)); // Transparent brush
@@ -151,6 +169,8 @@ namespace zetter_printer
             g.FillRectangle(brTr, dConf.p1.X, dConf.p1.Y, Math.Abs(dConf.p2.X - dConf.p1.X), Math.Abs(dConf.p1.Y - dConf.p2.Y));
             g.DrawRectangle(new Pen(br, 2), dConf.p1.X, dConf.p1.Y, Math.Abs(dConf.p2.X - dConf.p1.X), Math.Abs(dConf.p1.Y - dConf.p2.Y));
             g.Dispose();
+
+            this.BackgroundImage = bmp;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -170,7 +190,7 @@ namespace zetter_printer
         }
 
         private void zoneSelector_Shown(object sender, EventArgs e)
-        {
+        { 
             drawDots();
         }
 
@@ -179,7 +199,7 @@ namespace zetter_printer
             try
             {
                 dConf.latency = int.Parse(paintSpeed.Text);
-                if(dConf.latency == 0)
+                if (dConf.latency == 0)
                 {
                     dConf.latency = 1;
                     paintSpeed.Text = "1";
@@ -189,6 +209,64 @@ namespace zetter_printer
             {
                 paintSpeed.Text = "";
             }
+        }
+        private void findCanvasBounds()
+        {
+            if (bg.GetPixel(Width / 2, Height / 2) != ColorTheme.Canvas)
+            {
+                return;
+            }
+
+            int left = Width / 2;
+            int right = Width / 2;
+            int bottom = Height / 2;
+            int top = Height / 2;
+
+            for (int i = left; i > 0; i--) // finding the left border of a canvas
+            {
+                if (bg.GetPixel(i, Height / 2) != ColorTheme.Canvas)
+                {
+                    left = i + 1;
+                    break;
+                }
+            }
+
+            for (int i = right; i < Width; i++) // finding the right border of a canvas
+            {
+                if (bg.GetPixel(i, Height / 2) != ColorTheme.Canvas)
+                {
+                    right = i - 1;
+                    break;
+                }
+            }
+
+            for (int i = top; i > 0; i--) // finding the top border of a canvas
+            {
+                if (bg.GetPixel(Width / 2, i) != ColorTheme.Canvas)
+                {
+                    top = i + 1;
+                    break;
+                }
+            }
+
+            for (int i = bottom; i < Height; i++) // finding the bottom border of a canvas
+            {
+                if (bg.GetPixel(Width / 2, i) != ColorTheme.Canvas)
+                {
+                    bottom = i + 1;
+                    break;
+                }
+            }
+
+            dConf.p1 = new Point(left, top);
+            dConf.p2 = new Point(right, bottom);
+
+            drawDots();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            findCanvasBounds();
         }
     }
     public class drawConfig

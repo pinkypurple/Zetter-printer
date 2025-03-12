@@ -8,6 +8,7 @@ namespace zetter_printer
         Bitmap? canvas = null;
         Painter p = new Painter();
         ImgPreview preview = new ImgPreview();
+        public IntPtr minecraftWnd;
 
         int canCountX = 1;
         int canCountY = 1;
@@ -44,10 +45,11 @@ namespace zetter_printer
                 int newHeight = (int)((float)targetImage.Image.Height / (float)targetImage.Image.Width * 1000);
                 targetImage.Image = ImgProccesor.ResizeImage(targetImage.Image, newWidth, newHeight);
             }
-                
+
 
             toolPanel.Enabled = true;
             previewButton.Enabled = true;
+            checkBox1.Enabled = true;
 
             updateCanvas();
 
@@ -72,8 +74,10 @@ namespace zetter_printer
             p.canvas = canvas;
             p.curCanX = curCanX - 1;
             p.curCanY = curCanY - 1;
+            p.minecraftWnd = minecraftWnd;
+            p.titleHeight = Math.Abs(this.RectangleToScreen(this.ClientRectangle).Top - this.Top);
 
-            p.draw();
+            p.Draw();
         }
 
         private void canvasCountX_TextChanged(object sender, EventArgs e)
@@ -92,6 +96,14 @@ namespace zetter_printer
                 canCountX = 32;
                 canvasCountX.Text = canCountX.ToString();
             }
+            else if (canCountX == 0)
+            {
+                canCountX = 1;
+                canvasCountX.Text = canCountX.ToString();
+            }
+
+            if (checkBox1.Checked)
+                canCountX *= 2;
 
             updateCanvas();
             Bitmap bmp = (Bitmap)resultImage.Image;
@@ -114,6 +126,14 @@ namespace zetter_printer
                 canCountY = 32;
                 canvasCountY.Text = canCountY.ToString();
             }
+            else if(canCountY == 0)
+            {
+                canCountY = 1;
+                canvasCountY.Text = canCountY.ToString();
+            }
+
+            if (checkBox1.Checked)
+                canCountY *= 2;
 
             updateCanvas();
             Bitmap bmp = (Bitmap)resultImage.Image;
@@ -136,6 +156,11 @@ namespace zetter_printer
                 curCanX = canCountX;
                 canvasNumX.Text = curCanX.ToString();
             }
+            else if(curCanX == 0)
+            {
+                curCanX = 1;
+                canvasNumX.Text = curCanX.ToString();
+            }
 
             updateCanvas();
         }
@@ -156,6 +181,11 @@ namespace zetter_printer
                 curCanY = canCountX;
                 canvasNumY.Text = curCanY.ToString();
             }
+            else if (curCanY == 0)
+            {
+                curCanY = 1;
+                canvasNumY.Text = curCanY.ToString();
+            }
 
             updateCanvas();
         }
@@ -174,6 +204,29 @@ namespace zetter_printer
             }
 
             preview.ShowDialog();
+        }
+
+        private void mainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            p.doubleX = checkBox1.Checked;
+            p.doubleY = checkBox1.Checked;
+
+            if (checkBox1.Checked)
+            {
+                canCountX *= 2;
+                canCountY *= 2;
+            }
+            else
+            {
+                canCountX = (int)MathF.Round(canCountX / 2f);
+                canCountY = (int)MathF.Round(canCountY / 2f);
+            }
+            updateCanvas();
         }
     }
 }

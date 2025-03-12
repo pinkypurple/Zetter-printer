@@ -44,6 +44,7 @@
             resultImage = new PictureBox();
             label5 = new Label();
             previewButton = new Button();
+            checkBox1 = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)targetImage).BeginInit();
             toolPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)resultImage).BeginInit();
@@ -52,10 +53,9 @@
             // targetImage
             // 
             targetImage.BackColor = Color.FromArgb(32, 32, 32);
-            targetImage.Location = new Point(14, 16);
-            targetImage.Margin = new Padding(3, 4, 3, 4);
+            targetImage.Location = new Point(12, 12);
             targetImage.Name = "targetImage";
-            targetImage.Size = new Size(257, 300);
+            targetImage.Size = new Size(225, 225);
             targetImage.SizeMode = PictureBoxSizeMode.Zoom;
             targetImage.TabIndex = 0;
             targetImage.TabStop = false;
@@ -65,9 +65,9 @@
             // 
             targetImageLabel.AutoSize = true;
             targetImageLabel.ForeColor = Color.FromArgb(156, 126, 197);
-            targetImageLabel.Location = new Point(14, 317);
+            targetImageLabel.Location = new Point(12, 238);
             targetImageLabel.Name = "targetImageLabel";
-            targetImageLabel.Size = new Size(286, 20);
+            targetImageLabel.Size = new Size(225, 15);
             targetImageLabel.TabIndex = 1;
             targetImageLabel.Text = "Нажмите, чтобы выбрать изображение";
             // 
@@ -85,10 +85,9 @@
             toolPanel.Controls.Add(canvasCountX);
             toolPanel.Controls.Add(printButton);
             toolPanel.Enabled = false;
-            toolPanel.Location = new Point(278, 16);
-            toolPanel.Margin = new Padding(3, 4, 3, 4);
+            toolPanel.Location = new Point(243, 12);
             toolPanel.Name = "toolPanel";
-            toolPanel.Size = new Size(146, 297);
+            toolPanel.Size = new Size(128, 223);
             toolPanel.TabIndex = 2;
             // 
             // canvasNumY
@@ -96,13 +95,11 @@
             canvasNumY.BackColor = Color.FromArgb(32, 32, 32);
             canvasNumY.BorderStyle = BorderStyle.None;
             canvasNumY.ForeColor = Color.FromArgb(156, 126, 197);
-            canvasNumY.Location = new Point(17, 144);
-            canvasNumY.Margin = new Padding(3, 4, 3, 4);
+            canvasNumY.Location = new Point(15, 108);
             canvasNumY.MaxLength = 2;
             canvasNumY.Name = "canvasNumY";
-            canvasNumY.Size = new Size(114, 20);
+            canvasNumY.Size = new Size(100, 16);
             canvasNumY.TabIndex = 8;
-            canvasNumY.TabStop = false;
             canvasNumY.Text = "1";
             canvasNumY.TextChanged += canvasNumY_TextChanged;
             // 
@@ -111,13 +108,11 @@
             canvasNumX.BackColor = Color.FromArgb(32, 32, 32);
             canvasNumX.BorderStyle = BorderStyle.None;
             canvasNumX.ForeColor = Color.FromArgb(156, 126, 197);
-            canvasNumX.Location = new Point(16, 103);
-            canvasNumX.Margin = new Padding(3, 4, 3, 4);
+            canvasNumX.Location = new Point(14, 77);
             canvasNumX.MaxLength = 2;
             canvasNumX.Name = "canvasNumX";
-            canvasNumX.Size = new Size(114, 20);
+            canvasNumX.Size = new Size(100, 16);
             canvasNumX.TabIndex = 7;
-            canvasNumX.TabStop = false;
             canvasNumX.Text = "1";
             canvasNumX.TextChanged += canvasNumX_TextChanged;
             // 
@@ -126,13 +121,11 @@
             canvasCountY.BackColor = Color.FromArgb(32, 32, 32);
             canvasCountY.BorderStyle = BorderStyle.None;
             canvasCountY.ForeColor = Color.FromArgb(156, 126, 197);
-            canvasCountY.Location = new Point(16, 61);
-            canvasCountY.Margin = new Padding(3, 4, 3, 4);
+            canvasCountY.Location = new Point(14, 46);
             canvasCountY.MaxLength = 2;
             canvasCountY.Name = "canvasCountY";
-            canvasCountY.Size = new Size(114, 20);
+            canvasCountY.Size = new Size(100, 16);
             canvasCountY.TabIndex = 6;
-            canvasCountY.TabStop = false;
             canvasCountY.Text = "1";
             canvasCountY.TextChanged += canvasCountY_TextChanged;
             // 
@@ -141,13 +134,11 @@
             canvasCountX.BackColor = Color.FromArgb(32, 32, 32);
             canvasCountX.BorderStyle = BorderStyle.None;
             canvasCountX.ForeColor = Color.FromArgb(156, 126, 197);
-            canvasCountX.Location = new Point(16, 23);
-            canvasCountX.Margin = new Padding(3, 4, 3, 4);
+            canvasCountX.Location = new Point(14, 17);
             canvasCountX.MaxLength = 2;
             canvasCountX.Name = "canvasCountX";
-            canvasCountX.Size = new Size(114, 20);
+            canvasCountX.Size = new Size(100, 16);
             canvasCountX.TabIndex = 5;
-            canvasCountX.TabStop = false;
             canvasCountX.Text = "1";
             canvasCountX.TextChanged += canvasCountX_TextChanged;
             // 
@@ -157,10 +148,9 @@
             printButton.FlatAppearance.BorderSize = 0;
             printButton.FlatStyle = FlatStyle.Flat;
             printButton.ForeColor = Color.FromArgb(156, 126, 197);
-            printButton.Location = new Point(16, 257);
-            printButton.Margin = new Padding(3, 4, 3, 4);
+            printButton.Location = new Point(14, 193);
             printButton.Name = "printButton";
-            printButton.Size = new Size(115, 31);
+            printButton.Size = new Size(101, 23);
             printButton.TabIndex = 4;
             printButton.TabStop = false;
             printButton.Text = "Начать печать";
@@ -171,9 +161,9 @@
             // 
             label4.AutoSize = true;
             label4.ForeColor = Color.FromArgb(156, 126, 197);
-            label4.Location = new Point(441, 160);
+            label4.Location = new Point(386, 120);
             label4.Name = "label4";
-            label4.Size = new Size(118, 20);
+            label4.Size = new Size(95, 15);
             label4.TabIndex = 8;
             label4.Text = "Номер холста Y";
             // 
@@ -181,9 +171,9 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = Color.FromArgb(156, 126, 197);
-            label3.Location = new Point(441, 119);
+            label3.Location = new Point(386, 89);
             label3.Name = "label3";
-            label3.Size = new Size(119, 20);
+            label3.Size = new Size(95, 15);
             label3.TabIndex = 7;
             label3.Text = "Номер холста Х";
             // 
@@ -191,9 +181,9 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = Color.FromArgb(156, 126, 197);
-            label2.Location = new Point(441, 81);
+            label2.Location = new Point(386, 61);
             label2.Name = "label2";
-            label2.Size = new Size(144, 20);
+            label2.Size = new Size(116, 15);
             label2.TabIndex = 3;
             label2.Text = "Число холстов по Y";
             // 
@@ -201,19 +191,19 @@
             // 
             label1.AutoSize = true;
             label1.ForeColor = Color.FromArgb(156, 126, 197);
-            label1.Location = new Point(441, 43);
+            label1.Location = new Point(386, 32);
             label1.Name = "label1";
-            label1.Size = new Size(145, 20);
+            label1.Size = new Size(116, 15);
             label1.TabIndex = 2;
             label1.Text = "Число холстов по Х";
             // 
             // resultImage
             // 
             resultImage.BackColor = Color.FromArgb(32, 32, 32);
-            resultImage.Location = new Point(591, 16);
-            resultImage.Margin = new Padding(14, 16, 14, 16);
+            resultImage.Location = new Point(517, 12);
+            resultImage.Margin = new Padding(12, 12, 12, 12);
             resultImage.Name = "resultImage";
-            resultImage.Size = new Size(257, 300);
+            resultImage.Size = new Size(225, 225);
             resultImage.SizeMode = PictureBoxSizeMode.Zoom;
             resultImage.TabIndex = 3;
             resultImage.TabStop = false;
@@ -222,10 +212,10 @@
             // 
             label5.AutoSize = true;
             label5.ForeColor = Color.FromArgb(156, 126, 197);
-            label5.Location = new Point(591, 317);
-            label5.Margin = new Padding(3, 4, 3, 4);
+            label5.Location = new Point(517, 238);
+            label5.Margin = new Padding(3, 3, 3, 3);
             label5.Name = "label5";
-            label5.Size = new Size(119, 20);
+            label5.Size = new Size(96, 15);
             label5.TabIndex = 4;
             label5.Text = "Итоговый холст";
             // 
@@ -236,24 +226,38 @@
             previewButton.FlatAppearance.BorderSize = 0;
             previewButton.FlatStyle = FlatStyle.Flat;
             previewButton.ForeColor = Color.FromArgb(156, 126, 197);
-            previewButton.Location = new Point(442, 273);
-            previewButton.Margin = new Padding(3, 4, 3, 4);
+            previewButton.Location = new Point(387, 205);
             previewButton.Name = "previewButton";
-            previewButton.Size = new Size(132, 31);
+            previewButton.Size = new Size(116, 23);
             previewButton.TabIndex = 9;
             previewButton.TabStop = false;
             previewButton.Text = "Предпросмотр";
             previewButton.UseVisualStyleBackColor = true;
             previewButton.Click += previewButton_Click;
             // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Enabled = false;
+            checkBox1.Location = new Point(12, 255);
+            checkBox1.Margin = new Padding(3, 2, 3, 2);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(181, 19);
+            checkBox1.TabIndex = 10;
+            checkBox1.TabStop = false;
+            checkBox1.Text = "Рисование на холстах 2 на 2";
+            checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
+            // 
             // mainForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.FromArgb(25, 25, 25);
-            ClientSize = new Size(864, 433);
+            ClientSize = new Size(756, 325);
+            Controls.Add(checkBox1);
             Controls.Add(previewButton);
             Controls.Add(label4);
             Controls.Add(label5);
@@ -265,9 +269,9 @@
             Controls.Add(label2);
             Controls.Add(label1);
             ForeColor = Color.FromArgb(156, 126, 197);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "mainForm";
             Text = "Zetter printer";
+            Load += mainForm_Load;
             ((System.ComponentModel.ISupportInitialize)targetImage).EndInit();
             toolPanel.ResumeLayout(false);
             toolPanel.PerformLayout();
@@ -294,5 +298,6 @@
         private TextBox canvasCountY;
         private TextBox canvasCountX;
         private Button previewButton;
+        private CheckBox checkBox1;
     }
 }
